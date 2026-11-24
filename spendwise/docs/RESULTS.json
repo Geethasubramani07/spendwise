@@ -1,0 +1,16 @@
+{
+  "categorisation_accuracy": 0.935,
+  "categorisation_target": 0.85,
+  "fraud_recall": 0.911,
+  "fraud_recall_target": 0.7,
+  "fraud_precision": 0.57,
+  "fraud_runs": 5,
+  "fraud_recall_per_run": [
+    1.0,
+    1.0,
+    0.944,
+    0.818,
+    0.792
+  ],
+  "note": "Synthetic data with injected anomalies; real-world results will differ."
+}

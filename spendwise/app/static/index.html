@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SpendWise</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="top">
+    <div>
+      <h1>SpendWise</h1>
+      <p class="sub">Expense tracker with fraud alerts &middot; synthetic data only</p>
+    </div>
+    <div class="actions">
+      <select id="month-select" aria-label="Month"></select>
+      <button id="btn-demo" class="primary">Load demo data</button>
+      <label class="btn" for="csv-file">Import CSV</label>
+      <input id="csv-file" type="file" accept=".csv" hidden>
+      <button id="btn-reset" class="danger">Reset</button>
+    </div>
+  </header>
+
+  <div id="message" role="status" aria-live="polite"></div>
+
+  <section class="kpis">
+    <div class="card"><span class="label">Total spent</span><strong id="kpi-total">&#8377;0</strong></div>
+    <div class="card"><span class="label">Transactions</span><strong id="kpi-count">0</strong></div>
+    <div class="card warn"><span class="label">Fraud alerts</span><strong id="kpi-alerts">0</strong></div>
+    <div class="card"><span class="label">Budgets at risk</span><strong id="kpi-budgets">0</strong></div>
+  </section>
+
+  <main class="grid">
+    <section class="panel">
+      <h2>Monthly report by category</h2>
+      <div id="category-bars"></div>
+      <h3>Monthly trend</h3>
+      <div id="trend" class="trend"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Fraud alerts</h2>
+      <p class="hint">Every alert explains why it was flagged.</p>
+      <ul id="alerts-list" class="alerts"></ul>
+      <h3>Budget alerts</h3>
+      <ul id="budget-alerts" class="alerts budget"></ul>
+    </section>
+
+    <section class="panel wide">
+      <h2>Budgets</h2>
+      <form id="budget-form" class="inline">
+        <select id="budget-category" aria-label="Category"></select>
+        <input id="budget-limit" type="number" min="0" step="100" placeholder="Monthly limit (&#8377;)" required>
+        <button class="primary" type="submit">Save budget</button>
+      </form>
+    </section>
+
+    <section class="panel wide">
+      <h2>Transactions</h2>
+      <div class="inline">
+        <select id="filter-category" aria-label="Filter category"><option value="">All categories</option></select>
+        <label><input type="checkbox" id="filter-anomalies"> Alerts only</label>
+      </div>
+      <div class="table-wrap">
+        <table id="txn-table">
+          <thead><tr><th>Date</th><th>Description</th><th>Category</th><th class="num">Amount</th><th>Flag</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    CSV format: <code>date,description,amount</code> &middot; Use synthetic data; never upload real bank statements.
+  </footer>
+  <script src="/static/app.js"></script>
+</body>
+</html>
